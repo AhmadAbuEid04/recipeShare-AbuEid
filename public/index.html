@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RecipeShare</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.orange.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="container">
+    <nav>
+      <ul><li><a href="index.html" class="brand">🍲 RecipeShare</a></li></ul>
+      <ul id="nav-links"><li><a href="add.html" role="button">+ Add recipe</a></li></ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <hgroup>
+      <h1>Recipes from around the world</h1>
+      <p>Browse, filter, and rate what people are cooking.</p>
+    </hgroup>
+
+    <section id="recipes" class="recipe-grid" aria-live="polite"><p aria-busy="true">Loading recipes…</p></section>
+  </main>
+
+  <script type="module" src="js/home.js"></script>
+</body>
+</html>
