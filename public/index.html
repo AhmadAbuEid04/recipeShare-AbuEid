@@ -21,6 +21,13 @@
       <p>Browse, filter, and rate what people are cooking.</p>
     </hgroup>
 
+    <form id="filters" class="filters" role="search">
+      <label>Cuisine <select name="cuisine" id="f-cuisine"></select></label>
+      <label>Category <select name="category" id="f-category"></select></label>
+      <button type="reset" class="secondary outline" id="clear-filters">Clear filters</button>
+    </form>
+    <p id="result-count" class="rating"></p>
+
     <section id="recipes" class="recipe-grid" aria-live="polite"><p aria-busy="true">Loading recipes…</p></section>
   </main>
 
