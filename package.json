@@ -1,0 +1,13 @@
+{
+  "name": "recipeshare",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RecipeShare: share, find, and rate recipes from around the world.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "node --test tests/",
+    "start": "npm run build && npx --yes serve dist -l 3000"
+  },
+  "engines": { "node": ">=20" }
+}
