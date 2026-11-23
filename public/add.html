@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add a recipe · RecipeShare</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.orange.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="container">
+    <nav>
+      <ul><li><a href="index.html" class="brand">🍲 RecipeShare</a></li></ul>
+      <ul id="nav-links"><li><a href="index.html">All recipes</a></li></ul>
+    </nav>
+  </header>
+
+  <main class="container narrow">
+    <h1 id="form-title">Add a recipe</h1>
+    <div id="form-summary" class="form-summary" role="alert" hidden></div>
+
+    <form id="recipe-form" novalidate>
+      <label>Author name
+        <input name="author_name" autocomplete="name" placeholder="Your name">
+      </label>
+      <small class="field-error" data-error-for="author_name"></small>
+
+      <label>Title
+        <input name="title" placeholder="e.g. Saffron Chicken Rice">
+      </label>
+      <small class="field-error" data-error-for="title"></small>
+
+      <div class="grid">
+        <div>
+          <label>Cuisine <select name="cuisine" id="cuisine"></select></label>
+          <small class="field-error" data-error-for="cuisine"></small>
+        </div>
+        <div>
+          <label>Category <select name="category" id="category"></select></label>
+          <small class="field-error" data-error-for="category"></small>
+        </div>
+      </div>
+
+      <label>Ingredients <small>(one per line)</small>
+        <textarea name="ingredients" rows="6" placeholder="2 cups basmati rice&#10;1 onion"></textarea>
+      </label>
+      <small class="field-error" data-error-for="ingredients"></small>
+
+      <label>Steps <small>(one per line)</small>
+        <textarea name="steps" rows="6" placeholder="Wash the rice.&#10;Fry the onion."></textarea>
+      </label>
+      <small class="field-error" data-error-for="steps"></small>
+
+      <div class="grid">
+        <div>
+          <label>Prep time (minutes)
+            <input name="prep_minutes" type="number" min="1" step="1" inputmode="numeric" placeholder="30">
+          </label>
+          <small class="field-error" data-error-for="prep_minutes"></small>
+        </div>
+        <div>
+          <label>Image link (URL)
+            <input name="image_url" type="url" placeholder="https://…/photo.jpg">
+          </label>
+          <small class="field-error" data-error-for="image_url"></small>
+        </div>
+      </div>
+
+      <button type="submit" id="submit-btn">Save recipe</button>
+    </form>
+  </main>
+
+  <script type="module" src="js/form.js"></script>
+</body>
+</html>

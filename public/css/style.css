@@ -65,3 +65,5 @@
   nav ul:last-child a[role=button] { padding: .4rem .7rem; font-size: .9rem; }
   h1 { font-size: 1.6rem; }
 }
+
+.narrow { max-width: 760px; }
