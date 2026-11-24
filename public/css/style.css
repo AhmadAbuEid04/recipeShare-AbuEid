@@ -67,3 +67,11 @@
 }
 
 .narrow { max-width: 760px; }
+
+/* ---------- profile ---------- */
+.profile-head { display: flex; align-items: center; gap: 1rem; }
+.profile-head h1 { margin-bottom: .2rem; }
+.avatar { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+.section-gap { margin-top: 2.5rem; }
+.stars-text { color: var(--star); letter-spacing: .1em; white-space: nowrap; }
+nav ul { flex-wrap: wrap; }

@@ -1,8 +1,10 @@
 import { listRecipes } from './api.js';
+import { renderNav } from './auth.js';
 import { CATEGORIES, CUISINES } from './recipes.js';
 import { $, cardHtml, optionsHtml, showDemoBanner, showError, useImageFallback } from './ui.js';
 
 showDemoBanner();
+renderNav();
 
 const form = $('#filters');
 const container = $('#recipes');

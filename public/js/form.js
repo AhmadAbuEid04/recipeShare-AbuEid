@@ -1,8 +1,18 @@
 import { createRecipe } from './api.js';
-import { CATEGORIES, CUISINES, FIELDS, escapeHtml, validateRecipe } from './recipes.js';
+import { renderNav } from './auth.js';
+import { CATEGORIES, CUISINES, FIELDS, displayName, escapeHtml, validateRecipe } from './recipes.js';
 import { $, optionsHtml, showDemoBanner } from './ui.js';
 
 showDemoBanner();
+
+// S1: when signed in, the author is the signed-in user (name filled in and locked).
+renderNav().then((user) => {
+  if (!user) return;
+  const author = form.elements.author_name;
+  author.value = displayName(user);
+  author.readOnly = true;
+  author.insertAdjacentHTML('afterend', '<small>Signed in: your Google name is used as the author.</small>');
+});
 
 const form = $('#recipe-form');
 const summary = $('#form-summary');

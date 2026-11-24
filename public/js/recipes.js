@@ -120,3 +120,25 @@ export function escapeHtml(value) {
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
+
+/** Name to show for a signed-in Supabase user (Google full name, else email prefix). */
+export function displayName(user) {
+  if (!user) return '';
+  const meta = user.user_metadata ?? {};
+  return (meta.full_name || meta.name || (user.email ?? '').split('@')[0] || 'Cook').trim();
+}
+
+/**
+ * Why a user may not rate a recipe (S3), or null when they may.
+ * 'signed-out' – visitors must sign in; 'own-recipe' – authors cannot rate their own recipes.
+ */
+export function ratingBlockReason(user, recipe) {
+  if (!user) return 'signed-out';
+  if (recipe?.user_id && recipe.user_id === user.id) return 'own-recipe';
+  return null;
+}
+
+/** True when the signed-in user wrote this recipe (S2: may edit/delete it). */
+export function isOwner(user, recipe) {
+  return Boolean(user && recipe?.user_id && recipe.user_id === user.id);
+}

@@ -78,7 +78,18 @@ export async function createRecipe(recipe) {
   return row.id;
 }
 
-/** Save a 1–5 star rating. */
+/** The signed-in user, or null (always null in demo mode). */
+export async function currentUser() {
+  if (DEMO_MODE) return null;
+  const db = await supabase();
+  const { data } = await db.auth.getSession();
+  return data.session?.user ?? null;
+}
+
+/**
+ * Save a 1–5 star rating. Signed-in users have one rating per recipe: rating again replaces it (S3).
+ * The database rejects ratings from visitors and from the recipe's own author.
+ */
 export async function rateRecipe(recipeId, stars) {
   if (DEMO_MODE) {
     const list = demoLoad();
@@ -87,5 +98,33 @@ export async function rateRecipe(recipeId, stars) {
     return;
   }
   const db = await supabase();
-  check(await db.from('ratings').insert({ recipe_id: recipeId, stars }));
+  const user = await currentUser();
+  if (!user) throw new Error('Please sign in to rate recipes.');
+  check(await db.from('ratings')
+    .upsert({ recipe_id: Number(recipeId), stars, user_id: user.id }, { onConflict: 'recipe_id,user_id' }));
+}
+
+/** The signed-in user's stars for a recipe, or null. */
+export async function getMyRating(recipeId) {
+  const user = await currentUser();
+  if (!user) return null;
+  const db = await supabase();
+  const row = check(await db.from('ratings').select('stars')
+    .eq('recipe_id', recipeId).eq('user_id', user.id).maybeSingle());
+  return row?.stars ?? null;
+}
+
+/** Recipes written by a user, newest first. */
+export async function listMyRecipes(userId) {
+  const db = await supabase();
+  return check(await db.from('recipe_cards').select('*')
+    .eq('user_id', userId).order('created_at', { ascending: false }));
+}
+
+/** A user's rating history, most recently rated first. */
+export async function listMyRatings(userId) {
+  const db = await supabase();
+  return check(await db.from('ratings')
+    .select('stars, updated_at, recipe:recipes(id, title, image_url, cuisine, category)')
+    .eq('user_id', userId).order('updated_at', { ascending: false }));
 }
