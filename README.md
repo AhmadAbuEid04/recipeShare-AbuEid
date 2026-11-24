@@ -3,7 +3,7 @@
 A website where people share recipes from cuisines around the world, find them by cuisine and category,
 and rate the recipes they try.
 
-**Live app:** _coming soon (Vercel URL)_
+**Live app:** https://recipeshare-abueid.vercel.app
 
 Built for ECE 35400 with an AI coding agent. Requirements are in [docs/spec.md](docs/spec.md) and the
 build plan is in [docs/plan.md](docs/plan.md).
@@ -61,8 +61,8 @@ tests/           unit tests (npm test)
 | M3 | Add a recipe; missing fields are named and nothing is saved | ✅ Done |
 | M4 | Filter by cuisine and category; Clear; "No recipes found" | ✅ Done |
 | M5 | 1–5 star rating updates average and count on card and detail | ✅ Done |
-| M6 | Data saved in a database (Supabase) | 🟡 Code done; live database being connected |
-| M7 | Sample data in the live app | 🟡 Seed script ready (`sql/seed.sql`) |
+| M6 | Data saved in a database (Supabase) | ✅ Done |
+| M7 | Sample data in the live app (6 recipes, 6 cuisines) | ✅ Done |
 
 ### Should
 | ID | Feature | Status |
